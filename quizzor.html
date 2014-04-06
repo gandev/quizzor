@@ -1,0 +1,72 @@
+<!--
+
+quizzor
+
+submit questions and compete over answering other peoples questions
+
+two modes
+
+- Latter Mode (Questions stay unique)
+-> Latter Mode Questions can be played against other people or by yourself
+- Repeating Mode (Randomly select from all Submitted Questions)
+-> small ranking improvements (grinding opportunity)
+
+Question Ranking
+(for later.. mark questions if always (xxx times) right or wrong answered -> suspicious)
+
+answer a question and if right get points based of the questions ranking
+-> question rankings are reactively recalculated when more people answer the question
+-> update of question ranking and so user ranking too
+
+User ranking
+
+combined Ranking:
+-> submitted questions (cumulated question ranking)
+-> answers in Latter Mode (cumulated question ranking)
+-> battle in Latter Mode (compare user ranking)
+-> battle in Repeating Mode (compare user rankings)
+
+++++
+
+what if user submits question with wrong answer ???
+-> ??? allow users to mark as wrong answer
+   (check and remove scores from everybody who answered the question while wrong)
+-> ??? manually checking (mark questions as approved)
+
+-->
+
+<head>
+  <title>quizzor</title>
+</head>
+
+<body>
+
+  <div class="container">
+  {{#with current_question}}
+    {{> question}}
+    {{> choices}}
+  {{/with}}
+  </div>
+</body>
+
+<template name="question">
+  <h4>{{question}}</h4>
+</template>
+
+<template name="choices">
+    <div class="row">
+      <div class="span6">{{> choice question=this index=0}}</div>
+      <div class="span6">{{> choice question=this index=1}}</div>
+    </div>
+    <div class="row">
+      <div class="span6">{{> choice question=this index=2}}</div>
+      <div class="span6">{{> choice question=this index=3}}</div>
+    </div>
+</template>
+
+
+<template name="choice">
+  <div class="choice {{answer_state}}">
+    {{choice}}
+  </div>
+</template>
